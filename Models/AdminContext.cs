@@ -1,0 +1,13 @@
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace SkinCancerDetectionAPI.Models
+{
+    public class AdminContext : DbContext
+    {
+        public AdminContext(DbContextOptions options) : base(options)
+        {
+        }
+
+        public DbSet<Admin> Admins { get; set; }
+    }
+}
