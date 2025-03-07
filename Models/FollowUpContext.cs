@@ -4,7 +4,7 @@ namespace SkinCancerDetectionAPI.Models
 {
     public class FollowUpContext : DbContext
     {
-        public FollowUpContext(DbContextOptions options) : base(options)
+        public FollowUpContext(DbContextOptions<FollowUpContext> options) : base(options)
         {
         }
 

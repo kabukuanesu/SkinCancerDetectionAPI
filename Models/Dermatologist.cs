@@ -10,7 +10,7 @@ namespace SkinCancerDetectionAPI.Models
 
         [ForeignKey("Admin")]
         public int AdminId { get; set; }
-        public Admin Admin { get; set; } = null!; // navigation property
+        public Admin Admin { get; set; } = null!; // navigation property with null-forgiving operator
 
         [Column(TypeName="nvarchar(100)")]
         public string FirstName { get; set; } = "";
@@ -42,5 +42,7 @@ namespace SkinCancerDetectionAPI.Models
         public ICollection<Authentication> Authentications { get; set; } = new List<Authentication>(); // navigation property
 
         public ICollection<Patient> Patients { get; set; } = new List<Patient>(); // navigation property
+
+        public ICollection<AuditLog> AuditLogs { get; set; } = new List<AuditLog>(); // navigation property
     }
 }

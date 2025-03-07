@@ -4,7 +4,7 @@ namespace SkinCancerDetectionAPI.Models
 {
     public class AuthenticationContext : DbContext
     {
-        public AuthenticationContext(DbContextOptions options) : base(options)
+        public AuthenticationContext(DbContextOptions<AuthenticationContext> options) : base(options)
         {
         }
 

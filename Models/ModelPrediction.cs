@@ -10,7 +10,7 @@ namespace SkinCancerDetectionAPI.Models
 
         [ForeignKey("Image")]
         public int ImageId { get; set; }
-        public Image Image { get; set; } = null!; // navigation property
+        public Image Image { get; set; } = null!; // navigation property with null forgiving operator
 
         [Column(TypeName = "nvarchar(100)")]
         public string PredictionResult { get; set; } = "";
@@ -19,5 +19,7 @@ namespace SkinCancerDetectionAPI.Models
         public float ConfidenceScore { get; set; }
 
         public ICollection<Treatment> Treatments { get; set; } = new List<Treatment>(); // navigation property
+
+        public ICollection<AuditLog> AuditLogs { get; set; } = new List<AuditLog>(); // navigation property
     }
 }

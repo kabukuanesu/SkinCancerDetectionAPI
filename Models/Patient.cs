@@ -10,7 +10,7 @@ namespace SkinCancerDetectionAPI.Models
 
         [ForeignKey("Dermatologist")]
         public int DermatologistId { get; set; }
-        public Dermatologist Dermatologist { get; set; } = null!; // navigation property
+        public Dermatologist Dermatologist { get; set; } = null!; // navigation property with null-forgiving operator
 
         [Column(TypeName ="nvarchar(100)")]
         public string FirstName { get; set; } = "";
@@ -49,5 +49,7 @@ namespace SkinCancerDetectionAPI.Models
         public DateTime DateUpdated { get; set; } = DateTime.Now;
 
         public ICollection<Lesion> Lesions { get; set; } = new List<Lesion>(); // navigation property
+
+        public ICollection<AuditLog> AuditLogs { get; set; } = new List<AuditLog>(); // navigation property
     }
 }

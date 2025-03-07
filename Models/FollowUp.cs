@@ -10,7 +10,7 @@ namespace SkinCancerDetectionAPI.Models
 
         [ForeignKey("Treatment")]
         public int TreatmentId { get; set; }
-        public Treatment Treatment { get; set; } = null!; // navigation property
+        public Treatment Treatment { get; set; } = null!; // navigation property with null-forgiving operator
 
         [Column(TypeName = "nvarchar(100)")]
         public DateTime FollowUpDate { get; set; } = DateTime.Now;
@@ -20,5 +20,7 @@ namespace SkinCancerDetectionAPI.Models
 
         [Column(TypeName = "nvarchar(100)")]
         public string FollowUpDescription { get; set; } = "";
+
+        public ICollection<AuditLog> AuditLogs { get; set; } = new List<AuditLog>(); // navigation property
     }
 }

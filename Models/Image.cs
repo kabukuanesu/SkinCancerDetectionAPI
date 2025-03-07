@@ -34,5 +34,7 @@ namespace SkinCancerDetectionAPI.Models
         public DateTime DateUpdated { get; set; } = DateTime.Now;
 
         public ICollection<ModelPrediction> ModelPredictions { get; set; } = new List<ModelPrediction>(); // navigation property
+
+        public ICollection<AuditLog> AuditLogs { get; set; } = new List<AuditLog>(); // navigation property
     }
 }

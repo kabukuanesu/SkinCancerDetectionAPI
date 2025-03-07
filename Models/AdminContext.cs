@@ -4,7 +4,7 @@ namespace SkinCancerDetectionAPI.Models
 {
     public class AdminContext : DbContext
     {
-        public AdminContext(DbContextOptions options) : base(options)
+        public AdminContext(DbContextOptions<AdminContext> options) : base(options)
         {
         }
 

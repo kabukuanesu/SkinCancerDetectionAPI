@@ -4,7 +4,7 @@ namespace SkinCancerDetectionAPI.Models
 {
     public class DermatologistContext : DbContext
     {
-        public DermatologistContext(DbContextOptions options) : base(options)
+        public DermatologistContext(DbContextOptions<DermatologistContext> options) : base(options)
         {
         }
 

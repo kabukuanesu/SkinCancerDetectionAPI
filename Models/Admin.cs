@@ -38,5 +38,7 @@ namespace SkinCancerDetectionAPI.Models
         public ICollection<Dermatologist> Dermatologists { get; set; } = new List<Dermatologist>(); // navigation property
 
         public ICollection<AdminAuthentication> AdminAuthentications { get; set; } = new List<AdminAuthentication>(); // navigation property
+
+        public ICollection<AuditLog> AuditLogs { get; set; } = new List<AuditLog>(); // navigation property
     }
 }

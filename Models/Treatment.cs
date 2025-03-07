@@ -10,7 +10,7 @@ namespace SkinCancerDetectionAPI.Models
 
         [ForeignKey("Diagnosis")]
         public int DiagnosisId { get; set; }
-        public Diagnosis Diagnosis { get; set; } = null!; // navigation property
+        public Diagnosis Diagnosis { get; set; } = null!; // navigation property with null-forgiving operator
 
         [ForeignKey("ModelPrediction")]
         public int ModelPredictionId { get; set; }
@@ -26,5 +26,7 @@ namespace SkinCancerDetectionAPI.Models
         public string TreatmentDescription { get; set; } = "";
 
         public ICollection<FollowUp> FollowUps { get; set; } = new List<FollowUp>(); // navigation property
+
+        public ICollection<AuditLog> AuditLogs { get; set; } = new List<AuditLog>(); // navigation property
     }
 }
