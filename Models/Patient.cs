@@ -8,9 +8,9 @@ namespace SkinCancerDetectionAPI.Models
         [Key]
         public int PatientId { get; set; }
 
-        [ForeignKey("Dermatologist")]
-        public int DermatologistId { get; set; }
-        public Dermatologist Dermatologist { get; set; } = null!; // navigation property with null-forgiving operator
+        [ForeignKey("User")]
+        public int UserId { get; set; }
+        public User User { get; set; } = null!; // navigation property with null-forgiving operator
 
         [Column(TypeName ="nvarchar(100)")]
         public string FirstName { get; set; } = "";
@@ -19,7 +19,7 @@ namespace SkinCancerDetectionAPI.Models
         public string LastName { get; set; } = "";
 
         [Column(TypeName ="nvarchar(100)")]
-        public string DateOfBirth { get; set; } = "";
+        public DateOnly DateOfBirth { get; set; }
 
         [Column(TypeName ="nvarchar(100)")]
         public string Gender { get; set; } = "";

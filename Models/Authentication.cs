@@ -8,9 +8,9 @@ namespace SkinCancerDetectionAPI.Models
         [Key]
         public int AuthenticationId { get; set; }
 
-        [ForeignKey("Dermatologist")]
-        public int DermatologistId { get; set; }
-        public Dermatologist Dermatologist { get; set; } = null!; // navigation property with null-forgiving operator
+        [ForeignKey("User")]
+        public int UserId { get; set; }
+        public User User { get; set; } = null!; // navigation property with null-forgiving operator
 
         [Column(TypeName = "nvarchar(100)")]
         public string Username { get; set; } = "";
@@ -23,7 +23,5 @@ namespace SkinCancerDetectionAPI.Models
 
         [Column(TypeName = "nvarchar(100)")]
         public string RecoveryAnswer { get; set; } = "";
-
-        public ICollection<AuditLog> AuditLogs { get; set; } = new List<AuditLog>(); // navigation property
     }
 }

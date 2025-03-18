@@ -21,6 +21,12 @@ namespace SkinCancerDetectionAPI.Models
         [Column(TypeName = "nvarchar(100)")]
         public string FollowUpDescription { get; set; } = "";
 
+        [Column(TypeName = "nvarchar(100)")]
+        public bool IsFollowUp { get; set; } = false;
+
+        [Column(TypeName = "nvarchar(100)")]
+        public DateTime FollowingUpDate { get; set; }
+
         public ICollection<AuditLog> AuditLogs { get; set; } = new List<AuditLog>(); // navigation property
     }
 }

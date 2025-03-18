@@ -21,89 +21,6 @@ namespace SkinCancerDetectionAPI.Migrations.FollowUp
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("SkinCancerDetectionAPI.Models.Admin", b =>
-                {
-                    b.Property<int>("AdminId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AdminId"));
-
-                    b.Property<string>("DateCreated")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("DateOfBirth")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("DateUpdated")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("EmailAddress")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Gender")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("PhysicalAddress")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("AdminId");
-
-                    b.ToTable("Admin");
-                });
-
-            modelBuilder.Entity("SkinCancerDetectionAPI.Models.AdminAuthentication", b =>
-                {
-                    b.Property<int>("AdminAuthenticationId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AdminAuthenticationId"));
-
-                    b.Property<int>("AdminId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("RecoveryAnswer")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("RecoveryQuestion")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("AdminAuthenticationId");
-
-                    b.HasIndex("AdminId");
-
-                    b.ToTable("AdminAuthentication");
-                });
-
             modelBuilder.Entity("SkinCancerDetectionAPI.Models.AuditLog", b =>
                 {
                     b.Property<int>("AuditLogId")
@@ -112,19 +29,13 @@ namespace SkinCancerDetectionAPI.Migrations.FollowUp
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AuditLogId"));
 
-                    b.Property<int>("AdminAuthenticationId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("AdminId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("AuthenticationId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("DermatologistId")
+                    b.Property<int>("BiopsyId")
                         .HasColumnType("int");
 
                     b.Property<int>("DiagnosisId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FinalDiagnosisId")
                         .HasColumnType("int");
 
                     b.Property<int>("FollowUpId")
@@ -147,15 +58,11 @@ namespace SkinCancerDetectionAPI.Migrations.FollowUp
 
                     b.HasKey("AuditLogId");
 
-                    b.HasIndex("AdminAuthenticationId");
-
-                    b.HasIndex("AdminId");
-
-                    b.HasIndex("AuthenticationId");
-
-                    b.HasIndex("DermatologistId");
+                    b.HasIndex("BiopsyId");
 
                     b.HasIndex("DiagnosisId");
+
+                    b.HasIndex("FinalDiagnosisId");
 
                     b.HasIndex("FollowUpId");
 
@@ -180,9 +87,6 @@ namespace SkinCancerDetectionAPI.Migrations.FollowUp
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AuthenticationId"));
 
-                    b.Property<int>("DermatologistId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
@@ -195,69 +99,44 @@ namespace SkinCancerDetectionAPI.Migrations.FollowUp
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Username")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
                     b.HasKey("AuthenticationId");
 
-                    b.HasIndex("DermatologistId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Authentication");
                 });
 
-            modelBuilder.Entity("SkinCancerDetectionAPI.Models.Dermatologist", b =>
+            modelBuilder.Entity("SkinCancerDetectionAPI.Models.Biopsy", b =>
                 {
-                    b.Property<int>("DermatologistId")
+                    b.Property<int>("BiopsyId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DermatologistId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BiopsyId"));
 
-                    b.Property<int>("AdminId")
+                    b.Property<string>("BiopsyDate")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("BiopsyResult")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("LesionId")
                         .HasColumnType("int");
 
-                    b.Property<string>("DateCreated")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)");
+                    b.HasKey("BiopsyId");
 
-                    b.Property<string>("DateOfBirth")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)");
+                    b.HasIndex("LesionId");
 
-                    b.Property<string>("DateUpdated")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("EmailAddress")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Gender")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("PhysicalAddress")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("DermatologistId");
-
-                    b.HasIndex("AdminId");
-
-                    b.ToTable("Dermatologist");
+                    b.ToTable("Biopsy");
                 });
 
             modelBuilder.Entity("SkinCancerDetectionAPI.Models.Diagnosis", b =>
@@ -267,6 +146,9 @@ namespace SkinCancerDetectionAPI.Migrations.FollowUp
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DiagnosisId"));
+
+                    b.Property<int>("BiopsyId")
+                        .HasColumnType("int");
 
                     b.Property<string>("DiagnosisDate")
                         .IsRequired()
@@ -280,14 +162,42 @@ namespace SkinCancerDetectionAPI.Migrations.FollowUp
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("LesionId")
-                        .HasColumnType("int");
-
                     b.HasKey("DiagnosisId");
 
-                    b.HasIndex("LesionId");
+                    b.HasIndex("BiopsyId");
 
                     b.ToTable("Diagnosis");
+                });
+
+            modelBuilder.Entity("SkinCancerDetectionAPI.Models.FinalDiagnosis", b =>
+                {
+                    b.Property<int>("FinalDiagnosisId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FinalDiagnosisId"));
+
+                    b.Property<int>("DiagnosisId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FinalResult")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("FinalResultDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("ModelPredictionId")
+                        .HasColumnType("int");
+
+                    b.HasKey("FinalDiagnosisId");
+
+                    b.HasIndex("DiagnosisId");
+
+                    b.HasIndex("ModelPredictionId");
+
+                    b.ToTable("FinalDiagnosis");
                 });
 
             modelBuilder.Entity("SkinCancerDetectionAPI.Models.FollowUp", b =>
@@ -307,6 +217,14 @@ namespace SkinCancerDetectionAPI.Migrations.FollowUp
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("FollowUpResult")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("FollowingUpDate")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("IsFollowUp")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
@@ -373,14 +291,6 @@ namespace SkinCancerDetectionAPI.Migrations.FollowUp
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LesionId"));
-
-                    b.Property<string>("BiopsyDate")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("BiopsyResult")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("DateOfDetection")
                         .IsRequired()
@@ -462,9 +372,6 @@ namespace SkinCancerDetectionAPI.Migrations.FollowUp
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("DermatologistId")
-                        .HasColumnType("int");
-
                     b.Property<string>("EmailAddress")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
@@ -501,9 +408,12 @@ namespace SkinCancerDetectionAPI.Migrations.FollowUp
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("PatientId");
 
-                    b.HasIndex("DermatologistId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Patient");
                 });
@@ -516,11 +426,16 @@ namespace SkinCancerDetectionAPI.Migrations.FollowUp
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TreatmentId"));
 
-                    b.Property<int>("DiagnosisId")
+                    b.Property<int>("FinalDiagnosisId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ModelPredictionId")
-                        .HasColumnType("int");
+                    b.Property<string>("FollowUpDate")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("IsFollowUp")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("TreatmentDate")
                         .IsRequired()
@@ -536,53 +451,81 @@ namespace SkinCancerDetectionAPI.Migrations.FollowUp
 
                     b.HasKey("TreatmentId");
 
-                    b.HasIndex("DiagnosisId");
-
-                    b.HasIndex("ModelPredictionId");
+                    b.HasIndex("FinalDiagnosisId");
 
                     b.ToTable("Treatment");
                 });
 
-            modelBuilder.Entity("SkinCancerDetectionAPI.Models.AdminAuthentication", b =>
+            modelBuilder.Entity("SkinCancerDetectionAPI.Models.User", b =>
                 {
-                    b.HasOne("SkinCancerDetectionAPI.Models.Admin", "Admin")
-                        .WithMany("AdminAuthentications")
-                        .HasForeignKey("AdminId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Property<int>("UserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.Navigation("Admin");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
+
+                    b.Property<string>("DateCreated")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("DateOfBirth")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("DateUpdated")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("EmailAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("PhysicalAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Position")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("UserId");
+
+                    b.ToTable("User");
                 });
 
             modelBuilder.Entity("SkinCancerDetectionAPI.Models.AuditLog", b =>
                 {
-                    b.HasOne("SkinCancerDetectionAPI.Models.AdminAuthentication", "AdminAuthentication")
+                    b.HasOne("SkinCancerDetectionAPI.Models.Biopsy", "Biopsy")
                         .WithMany("AuditLogs")
-                        .HasForeignKey("AdminAuthenticationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SkinCancerDetectionAPI.Models.Admin", "Admin")
-                        .WithMany("AuditLogs")
-                        .HasForeignKey("AdminId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SkinCancerDetectionAPI.Models.Authentication", "Authentication")
-                        .WithMany("AuditLogs")
-                        .HasForeignKey("AuthenticationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SkinCancerDetectionAPI.Models.Dermatologist", "Dermatologist")
-                        .WithMany("AuditLogs")
-                        .HasForeignKey("DermatologistId")
+                        .HasForeignKey("BiopsyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("SkinCancerDetectionAPI.Models.Diagnosis", "Diagnosis")
                         .WithMany("AuditLogs")
                         .HasForeignKey("DiagnosisId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SkinCancerDetectionAPI.Models.FinalDiagnosis", "FinalDiagnosis")
+                        .WithMany("AuditLogs")
+                        .HasForeignKey("FinalDiagnosisId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -622,15 +565,11 @@ namespace SkinCancerDetectionAPI.Migrations.FollowUp
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Admin");
-
-                    b.Navigation("AdminAuthentication");
-
-                    b.Navigation("Authentication");
-
-                    b.Navigation("Dermatologist");
+                    b.Navigation("Biopsy");
 
                     b.Navigation("Diagnosis");
+
+                    b.Navigation("FinalDiagnosis");
 
                     b.Navigation("FollowUp");
 
@@ -647,35 +586,54 @@ namespace SkinCancerDetectionAPI.Migrations.FollowUp
 
             modelBuilder.Entity("SkinCancerDetectionAPI.Models.Authentication", b =>
                 {
-                    b.HasOne("SkinCancerDetectionAPI.Models.Dermatologist", "Dermatologist")
+                    b.HasOne("SkinCancerDetectionAPI.Models.User", "User")
                         .WithMany("Authentications")
-                        .HasForeignKey("DermatologistId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Dermatologist");
+                    b.Navigation("User");
                 });
 
-            modelBuilder.Entity("SkinCancerDetectionAPI.Models.Dermatologist", b =>
-                {
-                    b.HasOne("SkinCancerDetectionAPI.Models.Admin", "Admin")
-                        .WithMany("Dermatologists")
-                        .HasForeignKey("AdminId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Admin");
-                });
-
-            modelBuilder.Entity("SkinCancerDetectionAPI.Models.Diagnosis", b =>
+            modelBuilder.Entity("SkinCancerDetectionAPI.Models.Biopsy", b =>
                 {
                     b.HasOne("SkinCancerDetectionAPI.Models.Lesion", "Lesion")
-                        .WithMany("Diagnoses")
+                        .WithMany("Biopsies")
                         .HasForeignKey("LesionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Lesion");
+                });
+
+            modelBuilder.Entity("SkinCancerDetectionAPI.Models.Diagnosis", b =>
+                {
+                    b.HasOne("SkinCancerDetectionAPI.Models.Biopsy", "Biopsy")
+                        .WithMany("Diagnoses")
+                        .HasForeignKey("BiopsyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Biopsy");
+                });
+
+            modelBuilder.Entity("SkinCancerDetectionAPI.Models.FinalDiagnosis", b =>
+                {
+                    b.HasOne("SkinCancerDetectionAPI.Models.Diagnosis", "Diagnosis")
+                        .WithMany("FinalDiagnoses")
+                        .HasForeignKey("DiagnosisId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SkinCancerDetectionAPI.Models.ModelPrediction", "ModelPrediction")
+                        .WithMany("FinalDiagnoses")
+                        .HasForeignKey("ModelPredictionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Diagnosis");
+
+                    b.Navigation("ModelPrediction");
                 });
 
             modelBuilder.Entity("SkinCancerDetectionAPI.Models.FollowUp", b =>
@@ -724,63 +682,41 @@ namespace SkinCancerDetectionAPI.Migrations.FollowUp
 
             modelBuilder.Entity("SkinCancerDetectionAPI.Models.Patient", b =>
                 {
-                    b.HasOne("SkinCancerDetectionAPI.Models.Dermatologist", "Dermatologist")
+                    b.HasOne("SkinCancerDetectionAPI.Models.User", "User")
                         .WithMany("Patients")
-                        .HasForeignKey("DermatologistId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Dermatologist");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("SkinCancerDetectionAPI.Models.Treatment", b =>
                 {
-                    b.HasOne("SkinCancerDetectionAPI.Models.Diagnosis", "Diagnosis")
+                    b.HasOne("SkinCancerDetectionAPI.Models.FinalDiagnosis", "FinalDiagnosis")
                         .WithMany("Treatments")
-                        .HasForeignKey("DiagnosisId")
+                        .HasForeignKey("FinalDiagnosisId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SkinCancerDetectionAPI.Models.ModelPrediction", "ModelPrediction")
-                        .WithMany("Treatments")
-                        .HasForeignKey("ModelPredictionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Diagnosis");
-
-                    b.Navigation("ModelPrediction");
+                    b.Navigation("FinalDiagnosis");
                 });
 
-            modelBuilder.Entity("SkinCancerDetectionAPI.Models.Admin", b =>
-                {
-                    b.Navigation("AdminAuthentications");
-
-                    b.Navigation("AuditLogs");
-
-                    b.Navigation("Dermatologists");
-                });
-
-            modelBuilder.Entity("SkinCancerDetectionAPI.Models.AdminAuthentication", b =>
-                {
-                    b.Navigation("AuditLogs");
-                });
-
-            modelBuilder.Entity("SkinCancerDetectionAPI.Models.Authentication", b =>
-                {
-                    b.Navigation("AuditLogs");
-                });
-
-            modelBuilder.Entity("SkinCancerDetectionAPI.Models.Dermatologist", b =>
+            modelBuilder.Entity("SkinCancerDetectionAPI.Models.Biopsy", b =>
                 {
                     b.Navigation("AuditLogs");
 
-                    b.Navigation("Authentications");
-
-                    b.Navigation("Patients");
+                    b.Navigation("Diagnoses");
                 });
 
             modelBuilder.Entity("SkinCancerDetectionAPI.Models.Diagnosis", b =>
+                {
+                    b.Navigation("AuditLogs");
+
+                    b.Navigation("FinalDiagnoses");
+                });
+
+            modelBuilder.Entity("SkinCancerDetectionAPI.Models.FinalDiagnosis", b =>
                 {
                     b.Navigation("AuditLogs");
 
@@ -803,7 +739,7 @@ namespace SkinCancerDetectionAPI.Migrations.FollowUp
                 {
                     b.Navigation("AuditLogs");
 
-                    b.Navigation("Diagnoses");
+                    b.Navigation("Biopsies");
 
                     b.Navigation("Images");
                 });
@@ -812,7 +748,7 @@ namespace SkinCancerDetectionAPI.Migrations.FollowUp
                 {
                     b.Navigation("AuditLogs");
 
-                    b.Navigation("Treatments");
+                    b.Navigation("FinalDiagnoses");
                 });
 
             modelBuilder.Entity("SkinCancerDetectionAPI.Models.Patient", b =>
@@ -827,6 +763,13 @@ namespace SkinCancerDetectionAPI.Migrations.FollowUp
                     b.Navigation("AuditLogs");
 
                     b.Navigation("FollowUps");
+                });
+
+            modelBuilder.Entity("SkinCancerDetectionAPI.Models.User", b =>
+                {
+                    b.Navigation("Authentications");
+
+                    b.Navigation("Patients");
                 });
 #pragma warning restore 612, 618
         }
