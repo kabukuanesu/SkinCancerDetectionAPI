@@ -25,10 +25,8 @@ namespace SkinCancerDetectionAPI.Models
         public bool IsFollowUp { get; set; } = false;
 
         [Column(TypeName = "nvarchar(100)")]
-        public DateTime FollowUpDate { get; set; }
+        public DateTime FollowUpDate { get; set; } = DateTime.Now;
 
         public ICollection<FollowUp> FollowUps { get; set; } = new List<FollowUp>(); // navigation property
-
-        public ICollection<AuditLog> AuditLogs { get; set; } = new List<AuditLog>(); // navigation property
     }
 }

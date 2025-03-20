@@ -18,8 +18,9 @@ namespace SkinCancerDetectionAPI.Models
         [Column(TypeName = "nvarchar(100)")]
         public string BiopsyResult { get; set; } = "";
 
-        public ICollection<Diagnosis> Diagnoses { get; set; } = new List<Diagnosis>(); // navigation property
+        [Column(TypeName = "nvarchar(100)")]
+        public string BiopsyResultDescription { get; set; } = "";
 
-        public ICollection<AuditLog> AuditLogs { get; set; } = new List<AuditLog>(); // navigation property
+        public ICollection<Diagnosis> Diagnoses { get; set; } = new List<Diagnosis>(); // navigation property
     }
 }

@@ -43,6 +43,12 @@ namespace SkinCancerDetectionAPI.Models
         public string SkinType { get; set; } = "";
 
         [Column(TypeName = "nvarchar(100)")]
+        public bool IsScheduled { get; set; } = false;
+
+        [Column(TypeName = "nvarchar(100)")]
+        public DateTime Scheduled { get; set; } = DateTime.Now;
+
+        [Column(TypeName = "nvarchar(100)")]
         public DateTime DateCreated { get; set; } = DateTime.Now;
 
         [Column(TypeName = "nvarchar(100)")]
@@ -50,6 +56,8 @@ namespace SkinCancerDetectionAPI.Models
 
         public ICollection<Lesion> Lesions { get; set; } = new List<Lesion>(); // navigation property
 
-        public ICollection<AuditLog> AuditLogs { get; set; } = new List<AuditLog>(); // navigation property
+        public ICollection<Workflow> Workflows { get; set; } = new List<Workflow>(); // navigation property
+
+        public ICollection<Booking> Bookings { get; set; } = new List<Booking>(); // navigation property
     }
 }

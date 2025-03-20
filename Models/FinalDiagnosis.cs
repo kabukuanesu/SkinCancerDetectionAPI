@@ -23,7 +23,5 @@ namespace SkinCancerDetectionAPI.Models
         public string FinalResultDescription { get; set; } = "";
 
         public ICollection<Treatment> Treatments { get; set; } = new List<Treatment>(); // navigation property
-
-        public ICollection<AuditLog> AuditLogs { get; set; } = new List<AuditLog>(); // navigation property
     }
 }
