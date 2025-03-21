@@ -37,9 +37,5 @@ namespace SkinCancerDetectionAPI.Models
 
         [Column(TypeName = "nvarchar(100)")]
         public DateTime DateUpdated { get; set; } = DateTime.Now;
-
-        public ICollection<Authentication> Authentications { get; set; } = new List<Authentication>(); // navigation property
-
-        public ICollection<Patient> Patients { get; set; } = new List<Patient>(); // navigation property
     }
 }

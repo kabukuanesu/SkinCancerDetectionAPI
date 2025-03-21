@@ -8,9 +8,8 @@ namespace SkinCancerDetectionAPI.Models
         [Key]
         public int WorkflowId { get; set; }
 
-        [ForeignKey("Patient")]
         public int PatientId { get; set; }
-        public Patient Patient { get; set; } = null!; // navigation property with null-forgiving operator
+        public Patient Patient { get; set; } = null!;
 
         [Column(TypeName = "nvarchar(100)")]
         public string Status { get; set; } = "";
@@ -23,7 +22,5 @@ namespace SkinCancerDetectionAPI.Models
 
         [Column(TypeName = "nvarchar(100)")]
         public DateTime DateUpdated { get; set; } = DateTime.Now;
-
-        public ICollection<WorkflowStage> WorkflowStages { get; set; } = new List<WorkflowStage>(); // navigation property
     }
 }

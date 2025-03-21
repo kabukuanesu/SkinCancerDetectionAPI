@@ -8,9 +8,8 @@ namespace SkinCancerDetectionAPI.Models
         [Key]
         public int TreatmentId { get; set; }
 
-        [ForeignKey("FinalDiagnosis")]
         public int FinalDiagnosisId { get; set; }
-        public FinalDiagnosis FinalDiagnosis { get; set; } = null!; // navigation property with null-forgiving operator
+        public FinalDiagnosis FinalDiagnosis { get; set; } = null!;
 
         [Column(TypeName = "nvarchar(100)")]
         public DateTime TreatmentDate { get; set; } = DateTime.Now;
@@ -26,7 +25,5 @@ namespace SkinCancerDetectionAPI.Models
 
         [Column(TypeName = "nvarchar(100)")]
         public DateTime FollowUpDate { get; set; } = DateTime.Now;
-
-        public ICollection<FollowUp> FollowUps { get; set; } = new List<FollowUp>(); // navigation property
     }
 }

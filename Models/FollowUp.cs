@@ -8,9 +8,8 @@ namespace SkinCancerDetectionAPI.Models
         [Key]
         public int FollowUpId { get; set; }
 
-        [ForeignKey("Treatment")]
         public int TreatmentId { get; set; }
-        public Treatment Treatment { get; set; } = null!; // navigation property with null-forgiving operator
+        public Treatment Treatment { get; set; } = null!;
 
         [Column(TypeName = "nvarchar(100)")]
         public DateTime FollowUpDate { get; set; } = DateTime.Now;

@@ -8,9 +8,8 @@ namespace SkinCancerDetectionAPI.Models
         [Key]
         public int AuthenticationId { get; set; }
 
-        [ForeignKey("User")]
         public int UserId { get; set; }
-        public User User { get; set; } = null!; // navigation property with null-forgiving operator
+        public User User { get; set; } = null!;
 
         [Column(TypeName = "nvarchar(100)")]
         public string Username { get; set; } = "";

@@ -8,20 +8,16 @@ namespace SkinCancerDetectionAPI.Models
         [Key]
         public int FinalDiagnosisId { get; set; }
 
-        [ForeignKey("Diagnosis")]
         public int DiagnosisId { get; set; }
-        public Diagnosis Diagnosis { get; set; } = null!; // navigation property with null-forgiving operator
+        public Diagnosis Diagnosis { get; set; } = null!;
 
-        [ForeignKey("ModelPrediction")]
         public int ModelPredictionId { get; set; }
-        public ModelPrediction ModelPrediction { get; set; } = null!; // navigation property with null-forgiving operator
+        public ModelPrediction ModelPrediction { get; set; } = null!;
 
         [Column(TypeName = "nvarchar(100)")]
         public string FinalResult { get; set; } = "";
 
         [Column(TypeName = "nvarchar(100)")]
         public string FinalResultDescription { get; set; } = "";
-
-        public ICollection<Treatment> Treatments { get; set; } = new List<Treatment>(); // navigation property
     }
 }

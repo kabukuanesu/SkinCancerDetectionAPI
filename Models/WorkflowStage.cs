@@ -8,9 +8,9 @@ namespace SkinCancerDetectionAPI.Models
         [Key]
         public int WorkflowStageId { get; set; }
 
-        [ForeignKey("Workflow")]
         public int WorkflowId { get; set; }
-        public Workflow Workflow { get; set; } = null!; // navigation property with null-forgiving operator
+
+        public Workflow Workflow { get; set; } = null!;
 
         [Column(TypeName = "nvarchar(100)")]
         public string WorkflowStageName { get; set; } = "";

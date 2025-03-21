@@ -8,9 +8,8 @@ namespace SkinCancerDetectionAPI.Models
         [Key]
         public int LesionId { get; set; }
 
-        [ForeignKey("Patient")]
         public int PatientId { get; set; }
-        public Patient Patient { get; set; } = null!; // navigation property with null-forgiving operator
+        public Patient Patient { get; set; } = null!;
 
         [Column(TypeName = "nvarchar(100)")]
         public string LesionLocation { get; set; } = "";
@@ -29,9 +28,5 @@ namespace SkinCancerDetectionAPI.Models
 
         [Column(TypeName = "nvarchar(100)")]
         public bool IsBiopsy { get; set; } = false;
-
-        public ICollection<Biopsy> Biopsies { get; set; } = new List<Biopsy>(); // navigation property
-
-        public ICollection<Image> Images { get; set; } = new List<Image>(); // navigation property
     }
 }
