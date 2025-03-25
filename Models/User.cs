@@ -30,7 +30,7 @@ namespace SkinCancerDetectionAPI.Models
         public string PhoneNumber { get; set; } = "";
 
         [Column(TypeName = "nvarchar(100)")]
-        public string Position { get; set; } = "";
+        public string Role { get; set; } = "";
 
         [Column(TypeName = "nvarchar(100)")]
         public DateTime DateCreated { get; set; } = DateTime.Now;

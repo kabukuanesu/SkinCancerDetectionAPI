@@ -1,16 +1,19 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using SkinCancerDetectionAPI.Models;
 
 namespace SkinCancerDetectionAPI.Data
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<IdentityUser>
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
         }
 
         // Define DbSet properties for all your entities
-        public DbSet<User> Users { get; set; }
+        // Renamed to ApplicationUsers to avoid conflict with Identity's Users
+        public DbSet<User> ApplicationUsers { get; set; }
         public DbSet<Authentication> Authentications { get; set; }
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Booking> Bookings { get; set; }
@@ -30,8 +33,7 @@ namespace SkinCancerDetectionAPI.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            // Configure relationships here if needed
-
+            // Renamed all references from User to ApplicationUser in relationships
             // User -> Authentication (One-to-One)
             modelBuilder.Entity<Authentication>()
                 .HasOne(a => a.User)

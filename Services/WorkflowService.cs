@@ -21,7 +21,7 @@ namespace SkinCancerDetectionAPI.Services
         }
 
         // Stage 1: Admin can manipulate Patients, Dermatologist can manipulate Patients and Lesions
-        public async Task StartWorkflowAsync(ClaimsPrincipal user, int patientId, string lesionLocation, string lesionDescription)
+        public async Task StartWorkflowAsync(ClaimsPrincipal user, int patientId, string lesionLocation, string lesionDescription, string dermoscopicFeatures, bool isBiopsy)
         {
             var isAdmin = user.IsInRole("Admin");
             var isDermatologist = user.IsInRole("Dermatologist");
@@ -45,8 +45,11 @@ namespace SkinCancerDetectionAPI.Services
                 {
                     PatientId = patientId,
                     LesionLocation = lesionLocation,
+                    DateOfDetection = DateTime.UtcNow,
+                    DateOfExamination = DateTime.UtcNow,
                     LesionDescription = lesionDescription,
-                    DateOfDetection = DateTime.UtcNow
+                    DermoscopicFeatures = dermoscopicFeatures,
+                    IsBiopsy = isBiopsy
                 };
                 _context.Lesions.Add(lesion);
             }
@@ -55,7 +58,7 @@ namespace SkinCancerDetectionAPI.Services
         }
 
         // Stage 2: Dermatologist, Doctor, and Nurse can manipulate Images and ModelPredictions
-        public async Task UpdateImageAndPredictionAsync(ClaimsPrincipal user, int lesionId, string imageType, string predictionResult, float confidenceScore)
+        public async Task UpdateImageAndPredictionAsync(ClaimsPrincipal user, int lesionId, string imageType, string imageDescription, string resolution, string cameraModel, string illuminationType, string predictionResult, float confidenceScore)
         {
             var isDermatologist = user.IsInRole("Dermatologist");
             var isDoctor = user.IsInRole("Doctor");
@@ -71,11 +74,11 @@ namespace SkinCancerDetectionAPI.Services
             {
                 LesionId = lesionId,
                 ImageType = imageType,
-                ImageDescription = "Image description",
-                Resolution = "1920x1080",
+                ImageDescription = imageDescription,
+                Resolution = resolution,
                 DateTaken = DateTime.UtcNow,
-                CameraModel = "Camera Model",
-                IlluminationType = "Natural Light",
+                CameraModel = cameraModel,
+                IlluminationType = illuminationType,
                 DateUpdated = DateTime.UtcNow
             };
             _context.Images.Add(image);
@@ -93,7 +96,7 @@ namespace SkinCancerDetectionAPI.Services
         }
 
         // Stage 3: Dermatologist, Doctor, and Nurse can manipulate Biopsies and Diagnoses
-        public async Task UpdateBiopsyAndDiagnosisAsync(ClaimsPrincipal user, int lesionId, string biopsyResult, string diagnosisResult)
+        public async Task UpdateBiopsyAndDiagnosisAsync(ClaimsPrincipal user, int lesionId, string biopsyResult, string biopsyResultDescription, string diagnosisResult, string diagnosisDescription)
         {
             var isDermatologist = user.IsInRole("Dermatologist");
             var isDoctor = user.IsInRole("Doctor");
@@ -110,7 +113,7 @@ namespace SkinCancerDetectionAPI.Services
                 LesionId = lesionId,
                 BiopsyDate = DateTime.UtcNow,
                 BiopsyResult = biopsyResult,
-                BiopsyResultDescription = "Biopsy result description"
+                BiopsyResultDescription = biopsyResultDescription
             };
             _context.Biopsies.Add(biopsy);
             await _context.SaveChangesAsync();
@@ -121,14 +124,14 @@ namespace SkinCancerDetectionAPI.Services
                 BiopsyId = biopsy.BiopsyId,
                 DiagnosisDate = DateTime.UtcNow,
                 DiagnosisResult = diagnosisResult,
-                DiagnosisDescription = "Diagnosis description"
+                DiagnosisDescription = diagnosisDescription
             };
             _context.Diagnoses.Add(diagnosis);
             await _context.SaveChangesAsync();
         }
 
         // Stage 4: Only Dermatologist can manipulate FinalDiagnoses and Treatments
-        public async Task UpdateFinalDiagnosisAndTreatmentAsync(ClaimsPrincipal user, int diagnosisId, int modelPredictionId, string finalResult, string treatmentType)
+        public async Task UpdateFinalDiagnosisAndTreatmentAsync(ClaimsPrincipal user, int diagnosisId, int modelPredictionId, string finalResult, string finalResultDescription, string treatmentType, bool isFollowUp)
         {
             var isDermatologist = user.IsInRole("Dermatologist");
 
@@ -143,7 +146,7 @@ namespace SkinCancerDetectionAPI.Services
                 DiagnosisId = diagnosisId,
                 ModelPredictionId = modelPredictionId,
                 FinalResult = finalResult,
-                FinalResultDescription = "Final diagnosis description"
+                FinalResultDescription = finalResultDescription
             };
             _context.FinalDiagnoses.Add(finalDiagnosis);
             await _context.SaveChangesAsync();
@@ -155,7 +158,7 @@ namespace SkinCancerDetectionAPI.Services
                 TreatmentDate = DateTime.UtcNow,
                 TreatmentType = treatmentType,
                 TreatmentDescription = "Treatment description",
-                IsFollowUp = true,
+                IsFollowUp = isFollowUp,
                 FollowUpDate = DateTime.UtcNow.AddDays(30)
             };
             _context.Treatments.Add(treatment);
