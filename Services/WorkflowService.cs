@@ -775,5 +775,44 @@ namespace SkinCancerDetectionAPI.Services
                 FollowingUpDate = f.FollowingUpDate
             }).ToList();
         }
+
+        // Workflow methods
+        public async Task<WorkflowResponseDto?> GetWorkflowByIdAsync(int workflowId)
+        {
+            var workflow = await _context.Workflows.FindAsync(workflowId);
+            if (workflow == null) return null;
+
+            return new WorkflowResponseDto
+            {
+                WorkflowId = workflow.WorkflowId,
+                PatientId = workflow.PatientId,
+                Status = workflow.Status,
+                CreatedBy = workflow.CreatedBy,
+                DateCreated = workflow.DateCreated,
+                DateUpdated = workflow.DateUpdated
+            };
+        }
+
+        public async Task<List<WorkflowResponseDto>> GetAllWorkflowsAsync(ClaimsPrincipal user)
+        {
+            var isAdmin = user.IsInRole("Admin");
+            var isDermatologist = user.IsInRole("Dermatologist");
+
+            if (!isAdmin && !isDermatologist)
+            {
+                throw new UnauthorizedAccessException("Only Admin and Dermatologist can view workflows.");
+            }
+
+            var workflows = await _context.Workflows.ToListAsync();
+            return workflows.Select(w => new WorkflowResponseDto
+            {
+                WorkflowId = w.WorkflowId,
+                PatientId = w.PatientId,
+                Status = w.Status,
+                CreatedBy = w.CreatedBy,
+                DateCreated = w.DateCreated,
+                DateUpdated = w.DateUpdated
+            }).ToList();
+        }
     }
 }

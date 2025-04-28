@@ -816,5 +816,39 @@ namespace SkinCancerDetectionAPI.Controllers
                 return Unauthorized(ex.Message);
             }
         }
+
+        /* ========== WORKFLOW GET ENDPOINTS ========== */
+
+        [HttpGet("workflows")]
+        public async Task<IActionResult> GetAllWorkflows()
+        {
+            try
+            {
+                var workflows = await _workflowService.GetAllWorkflowsAsync(User);
+                return Ok(workflows);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(ex.Message);
+            }
+        }
+
+        [HttpGet("workflow/{workflowId}")]
+        public async Task<IActionResult> GetWorkflow(int workflowId)
+        {
+            try
+            {
+                var workflow = await _workflowService.GetWorkflowByIdAsync(workflowId);
+                if (workflow == null)
+                {
+                    return NotFound("Workflow not found");
+                }
+                return Ok(workflow);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(ex.Message);
+            }
+        }
     }
 }
