@@ -26,6 +26,9 @@ namespace SkinCancerDetectionAPI.Data
         public DbSet<Treatment> Treatments { get; set; }
         public DbSet<FollowUp> FollowUps { get; set; }
 
+        // Add this to your existing AppDbContext class
+        public DbSet<Log> Logs { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using SkinCancerDetectionAPI.Controllers;
 using SkinCancerDetectionAPI.Data;
 using SkinCancerDetectionAPI.Services;
 using System.Text;
@@ -12,6 +14,14 @@ var builder = WebApplication.CreateBuilder(args);
 // Add DbContext
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DevConnection")));
+
+builder.Services.AddScoped<UpdateAuthController>();
+
+// In Program.cs
+builder.Services.Configure<ApiBehaviorOptions>(options =>
+{
+    options.SuppressModelStateInvalidFilter = true;
+});
 
 // Add Identity
 builder.Services.AddIdentity<IdentityUser, IdentityRole>()

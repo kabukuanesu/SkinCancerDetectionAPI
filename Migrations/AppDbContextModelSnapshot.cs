@@ -493,6 +493,30 @@ namespace SkinCancerDetectionAPI.Migrations
                     b.ToTable("Lesions");
                 });
 
+            modelBuilder.Entity("SkinCancerDetectionAPI.Models.Log", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StackTrace")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Timestamp")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Logs");
+                });
+
             modelBuilder.Entity("SkinCancerDetectionAPI.Models.ModelPrediction", b =>
                 {
                     b.Property<int>("ModelPredictionId")
