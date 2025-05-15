@@ -11,6 +11,8 @@ namespace SkinCancerDetectionAPI.Models
         public int BiopsyId { get; set; }
         public Biopsy Biopsy { get; set; } = null!;
 
+        public int UserId { get; set; }
+
         [Column(TypeName = "nvarchar(100)")]
         public DateTime DiagnosisDate { get; set; } = DateTime.Now;
 

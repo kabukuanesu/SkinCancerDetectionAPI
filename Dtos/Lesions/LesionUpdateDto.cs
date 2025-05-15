@@ -3,6 +3,7 @@ namespace SkinCancerDetectionAPI.Models
 {
     public class LesionUpdateDto
     {
+        public int UserId { get; set; }
         public string LesionLocation { get; set; } = string.Empty;
         public string LesionDescription { get; set; } = string.Empty;
         public string DermoscopicFeatures { get; set; } = string.Empty;

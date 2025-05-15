@@ -277,6 +277,9 @@ namespace SkinCancerDetectionAPI.Migrations
                     b.Property<int>("LesionId")
                         .HasColumnType("int");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("BiopsyId");
 
                     b.HasIndex("LesionId");
@@ -297,6 +300,9 @@ namespace SkinCancerDetectionAPI.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("PatientId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("BookingId");
@@ -329,6 +335,9 @@ namespace SkinCancerDetectionAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("DiagnosisId");
 
                     b.HasIndex("BiopsyId");
@@ -356,6 +365,9 @@ namespace SkinCancerDetectionAPI.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("ModelPredictionId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("FinalDiagnosisId");
@@ -396,6 +408,9 @@ namespace SkinCancerDetectionAPI.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("TreatmentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("FollowUpId");
@@ -444,6 +459,9 @@ namespace SkinCancerDetectionAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("ImageId");
 
                     b.HasIndex("LesionId");
@@ -484,6 +502,9 @@ namespace SkinCancerDetectionAPI.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("PatientId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("LesionId");
@@ -535,6 +556,9 @@ namespace SkinCancerDetectionAPI.Migrations
                     b.Property<string>("PredictionResult")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("ModelPredictionId");
 
@@ -647,6 +671,9 @@ namespace SkinCancerDetectionAPI.Migrations
                     b.Property<string>("TreatmentType")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("TreatmentId");
 

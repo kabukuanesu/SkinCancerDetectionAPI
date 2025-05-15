@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Org.BouncyCastle.Bcpg;
 using SkinCancerDetectionAPI.Data;
 using SkinCancerDetectionAPI.Dtos.Workflows;
 using SkinCancerDetectionAPI.Models;
@@ -104,6 +105,7 @@ namespace SkinCancerDetectionAPI.Services
                 throw new ArgumentException("Lesion not found");
             }
 
+            existingLesion.UserId = lesion.UserId;
             existingLesion.LesionLocation = lesion.LesionLocation;
             existingLesion.LesionDescription = lesion.LesionDescription;
             existingLesion.DermoscopicFeatures = lesion.DermoscopicFeatures;
@@ -469,6 +471,7 @@ namespace SkinCancerDetectionAPI.Services
             {
                 LesionId = lesion.LesionId,
                 PatientId = lesion.PatientId,
+                UserId = lesion.UserId,
                 LesionLocation = lesion.LesionLocation,
                 DateOfDetection = lesion.DateOfDetection,
                 DateOfExamination = lesion.DateOfExamination,
@@ -492,6 +495,7 @@ namespace SkinCancerDetectionAPI.Services
             {
                 LesionId = l.LesionId,
                 PatientId = l.PatientId,
+                UserId = l.UserId,
                 LesionLocation = l.LesionLocation,
                 DateOfDetection = l.DateOfDetection,
                 DateOfExamination = l.DateOfExamination,
@@ -511,6 +515,7 @@ namespace SkinCancerDetectionAPI.Services
             {
                 ImageId = image.ImageId,
                 LesionId = image.LesionId,
+                UserId = image.UserId,
                 ImageType = image.ImageType,
                 ImageDescription = image.ImageDescription,
                 Resolution = image.Resolution,
@@ -537,6 +542,7 @@ namespace SkinCancerDetectionAPI.Services
             {
                 ImageId = i.ImageId,
                 LesionId = i.LesionId,
+                UserId = i.UserId,
                 ImageType = i.ImageType,
                 ImageDescription = i.ImageDescription,
                 Resolution = i.Resolution,
@@ -557,6 +563,7 @@ namespace SkinCancerDetectionAPI.Services
             {
                 ModelPredictionId = prediction.ModelPredictionId,
                 ImageId = prediction.ImageId,
+                UserId = prediction.UserId,
                 PredictionResult = prediction.PredictionResult,
                 ConfidenceScore = prediction.ConfidenceScore
             };
@@ -578,6 +585,7 @@ namespace SkinCancerDetectionAPI.Services
             {
                 ModelPredictionId = p.ModelPredictionId,
                 ImageId = p.ImageId,
+                UserId = p.UserId,
                 PredictionResult = p.PredictionResult,
                 ConfidenceScore = p.ConfidenceScore
             }).ToList();
@@ -593,6 +601,7 @@ namespace SkinCancerDetectionAPI.Services
             {
                 BiopsyId = biopsy.BiopsyId,
                 LesionId = biopsy.LesionId,
+                UserId = biopsy.UserId,
                 BiopsyDate = biopsy.BiopsyDate,
                 BiopsyResult = biopsy.BiopsyResult,
                 BiopsyResultDescription = biopsy.BiopsyResultDescription
@@ -615,6 +624,7 @@ namespace SkinCancerDetectionAPI.Services
             {
                 BiopsyId = b.BiopsyId,
                 LesionId = b.LesionId,
+                UserId = b.UserId,
                 BiopsyDate = b.BiopsyDate,
                 BiopsyResult = b.BiopsyResult,
                 BiopsyResultDescription = b.BiopsyResultDescription
@@ -631,6 +641,7 @@ namespace SkinCancerDetectionAPI.Services
             {
                 DiagnosisId = diagnosis.DiagnosisId,
                 BiopsyId = diagnosis.BiopsyId,
+                UserId = diagnosis.UserId,
                 DiagnosisDate = diagnosis.DiagnosisDate,
                 DiagnosisResult = diagnosis.DiagnosisResult,
                 DiagnosisDescription = diagnosis.DiagnosisDescription
@@ -653,6 +664,7 @@ namespace SkinCancerDetectionAPI.Services
             {
                 DiagnosisId = d.DiagnosisId,
                 BiopsyId = d.BiopsyId,
+                UserId = d.UserId,
                 DiagnosisDate = d.DiagnosisDate,
                 DiagnosisResult = d.DiagnosisResult,
                 DiagnosisDescription = d.DiagnosisDescription
@@ -670,6 +682,7 @@ namespace SkinCancerDetectionAPI.Services
                 FinalDiagnosisId = finalDiagnosis.FinalDiagnosisId,
                 DiagnosisId = finalDiagnosis.DiagnosisId,
                 ModelPredictionId = finalDiagnosis.ModelPredictionId,
+                UserId = finalDiagnosis.UserId,
                 FinalResult = finalDiagnosis.FinalResult,
                 FinalResultDescription = finalDiagnosis.FinalResultDescription
             };
@@ -690,6 +703,7 @@ namespace SkinCancerDetectionAPI.Services
                 FinalDiagnosisId = fd.FinalDiagnosisId,
                 DiagnosisId = fd.DiagnosisId,
                 ModelPredictionId = fd.ModelPredictionId,
+                UserId = fd.UserId,
                 FinalResult = fd.FinalResult,
                 FinalResultDescription = fd.FinalResultDescription
             }).ToList();
@@ -705,6 +719,7 @@ namespace SkinCancerDetectionAPI.Services
             {
                 TreatmentId = treatment.TreatmentId,
                 FinalDiagnosisId = treatment.FinalDiagnosisId,
+                UserId = treatment.UserId,
                 TreatmentDate = treatment.TreatmentDate,
                 TreatmentType = treatment.TreatmentType,
                 TreatmentDescription = treatment.TreatmentDescription,
@@ -727,6 +742,7 @@ namespace SkinCancerDetectionAPI.Services
             {
                 TreatmentId = t.TreatmentId,
                 FinalDiagnosisId = t.FinalDiagnosisId,
+                UserId = t.UserId,
                 TreatmentDate = t.TreatmentDate,
                 TreatmentType = t.TreatmentType,
                 TreatmentDescription = t.TreatmentDescription,
@@ -745,6 +761,7 @@ namespace SkinCancerDetectionAPI.Services
             {
                 FollowUpId = followUp.FollowUpId,
                 TreatmentId = followUp.TreatmentId,
+                UserId = followUp.UserId,
                 FollowUpDate = followUp.FollowUpDate,
                 FollowUpResult = followUp.FollowUpResult,
                 FollowUpDescription = followUp.FollowUpDescription,
@@ -768,6 +785,7 @@ namespace SkinCancerDetectionAPI.Services
             {
                 FollowUpId = f.FollowUpId,
                 TreatmentId = f.TreatmentId,
+                UserId = f.UserId,
                 FollowUpDate = f.FollowUpDate,
                 FollowUpResult = f.FollowUpResult,
                 FollowUpDescription = f.FollowUpDescription,

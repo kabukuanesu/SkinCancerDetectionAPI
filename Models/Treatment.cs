@@ -11,6 +11,8 @@ namespace SkinCancerDetectionAPI.Models
         public int FinalDiagnosisId { get; set; }
         public FinalDiagnosis FinalDiagnosis { get; set; } = null!;
 
+        public int UserId { get; set; }
+
         [Column(TypeName = "nvarchar(100)")]
         public DateTime TreatmentDate { get; set; } = DateTime.Now;
 

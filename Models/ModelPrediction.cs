@@ -11,6 +11,8 @@ namespace SkinCancerDetectionAPI.Models
         public int ImageId { get; set; }
         public Image Image { get; set; } = null!;
 
+        public int UserId { get; set; }
+
         [Column(TypeName = "nvarchar(100)")]
         public string PredictionResult { get; set; } = "";
 

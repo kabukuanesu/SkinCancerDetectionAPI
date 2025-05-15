@@ -4,6 +4,7 @@
     {
         public int ImageId { get; set; }
         public int LesionId { get; set; }
+        public int UserId { get; set; }
         public string ImageType { get; set; } = string.Empty;
         public string ImageDescription { get; set; } = string.Empty;
         public string Resolution { get; set; } = string.Empty;

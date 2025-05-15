@@ -11,6 +11,8 @@ namespace SkinCancerDetectionAPI.Models
         public int DiagnosisId { get; set; }
         public Diagnosis Diagnosis { get; set; } = null!;
 
+        public int UserId { get; set; }
+
         public int ModelPredictionId { get; set; }
         public ModelPrediction ModelPrediction { get; set; } = null!;
 

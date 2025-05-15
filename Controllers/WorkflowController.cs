@@ -158,6 +158,7 @@ namespace SkinCancerDetectionAPI.Controllers
                 var lesion = new Lesion
                 {
                     PatientId = lesionDto.PatientId,
+                    UserId = lesionDto.UserId,
                     LesionLocation = lesionDto.LesionLocation,
                     LesionDescription = lesionDto.LesionDescription,
                     DermoscopicFeatures = lesionDto.DermoscopicFeatures,
@@ -180,6 +181,7 @@ namespace SkinCancerDetectionAPI.Controllers
             {
                 var lesion = new Lesion
                 {
+                    UserId = lesionDto.UserId,
                     LesionLocation = lesionDto.LesionLocation,
                     LesionDescription = lesionDto.LesionDescription,
                     DermoscopicFeatures = lesionDto.DermoscopicFeatures,
@@ -237,6 +239,7 @@ namespace SkinCancerDetectionAPI.Controllers
                 var image = new Image
                 {
                     LesionId = imageDto.LesionId,
+                    UserId = imageDto.UserId,
                     ImageType = imageDto.ImageType,
                     ImageDescription = imageDto.ImageDescription,
                     Resolution = imageDto.Resolution,
@@ -266,6 +269,7 @@ namespace SkinCancerDetectionAPI.Controllers
 
                 var image = new Image
                 {
+                    UserId = imageDto.UserId,
                     ImageType = imageDto.ImageType,
                     ImageDescription = imageDto.ImageDescription,
                     Resolution = imageDto.Resolution,
@@ -323,6 +327,7 @@ namespace SkinCancerDetectionAPI.Controllers
             {
                 var prediction = new ModelPrediction
                 {
+                    UserId = predictionDto.UserId,
                     ImageId = predictionDto.ImageId,
                     PredictionResult = predictionDto.PredictionResult,
                     ConfidenceScore = predictionDto.ConfidenceScore
@@ -350,6 +355,7 @@ namespace SkinCancerDetectionAPI.Controllers
 
                 var prediction = new ModelPrediction
                 {
+                    UserId = predictionDto.UserId,
                     PredictionResult = predictionDto.PredictionResult,
                     ConfidenceScore = predictionDto.ConfidenceScore
                 };
@@ -405,6 +411,7 @@ namespace SkinCancerDetectionAPI.Controllers
                 var biopsy = new Biopsy
                 {
                     LesionId = biopsyDto.LesionId,
+                    UserId = biopsyDto.UserId,
                     BiopsyResult = biopsyDto.BiopsyResult,
                     BiopsyResultDescription = biopsyDto.BiopsyResultDescription
                 };
@@ -431,6 +438,7 @@ namespace SkinCancerDetectionAPI.Controllers
 
                 var biopsy = new Biopsy
                 {
+                    UserId = biopsyDto.UserId,
                     BiopsyResult = biopsyDto.BiopsyResult,
                     BiopsyResultDescription = biopsyDto.BiopsyResultDescription
                 };
@@ -485,6 +493,7 @@ namespace SkinCancerDetectionAPI.Controllers
             {
                 var diagnosis = new Diagnosis
                 {
+                    UserId = diagnosisDto.UserId,
                     BiopsyId = diagnosisDto.BiopsyId,
                     DiagnosisResult = diagnosisDto.DiagnosisResult,
                     DiagnosisDescription = diagnosisDto.DiagnosisDescription
@@ -512,6 +521,7 @@ namespace SkinCancerDetectionAPI.Controllers
 
                 var diagnosis = new Diagnosis
                 {
+                    UserId = diagnosisDto.UserId,
                     DiagnosisResult = diagnosisDto.DiagnosisResult,
                     DiagnosisDescription = diagnosisDto.DiagnosisDescription
                 };
@@ -567,6 +577,7 @@ namespace SkinCancerDetectionAPI.Controllers
                 var finalDiagnosis = new FinalDiagnosis
                 {
                     DiagnosisId = finalDiagnosisDto.DiagnosisId,
+                    UserId = finalDiagnosisDto.UserId,
                     ModelPredictionId = finalDiagnosisDto.ModelPredictionId,
                     FinalResult = finalDiagnosisDto.FinalResult,
                     FinalResultDescription = finalDiagnosisDto.FinalResultDescription
@@ -594,6 +605,7 @@ namespace SkinCancerDetectionAPI.Controllers
 
                 var finalDiagnosis = new FinalDiagnosis
                 {
+                    UserId = finalDiagnosisDto.UserId,
                     FinalResult = finalDiagnosisDto.FinalResult,
                     FinalResultDescription = finalDiagnosisDto.FinalResultDescription
                 };
@@ -649,6 +661,7 @@ namespace SkinCancerDetectionAPI.Controllers
                 var treatment = new Treatment
                 {
                     FinalDiagnosisId = treatmentDto.FinalDiagnosisId,
+                    UserId = treatmentDto.UserId,
                     TreatmentType = treatmentDto.TreatmentType,
                     TreatmentDescription = treatmentDto.TreatmentDescription,
                     IsFollowUp = treatmentDto.IsFollowUp
@@ -676,6 +689,7 @@ namespace SkinCancerDetectionAPI.Controllers
 
                 var treatment = new Treatment
                 {
+                    UserId = treatmentDto.UserId,
                     TreatmentType = treatmentDto.TreatmentType,
                     TreatmentDescription = treatmentDto.TreatmentDescription,
                     IsFollowUp = treatmentDto.IsFollowUp
@@ -732,6 +746,7 @@ namespace SkinCancerDetectionAPI.Controllers
                 var followUp = new FollowUp
                 {
                     TreatmentId = followUpDto.TreatmentId,
+                    UserId = followUpDto.UserId,
                     FollowUpResult = followUpDto.FollowUpResult,
                     FollowUpDescription = followUpDto.FollowUpDescription,
                     IsFollowUp = followUpDto.IsFollowUp
@@ -759,6 +774,7 @@ namespace SkinCancerDetectionAPI.Controllers
 
                 var followUp = new FollowUp
                 {
+                    UserId = followUpDto.UserId,
                     FollowUpResult = followUpDto.FollowUpResult,
                     FollowUpDescription = followUpDto.FollowUpDescription,
                     IsFollowUp = followUpDto.IsFollowUp

@@ -73,6 +73,21 @@ namespace SkinCancerDetectionAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Logs",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Message = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StackTrace = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Timestamp = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Logs", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Authentications",
                 columns: table => new
                 {
@@ -144,7 +159,7 @@ namespace SkinCancerDetectionAPI.Migrations
                         column: x => x.RoleId,
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -165,7 +180,7 @@ namespace SkinCancerDetectionAPI.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -185,7 +200,7 @@ namespace SkinCancerDetectionAPI.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -203,13 +218,13 @@ namespace SkinCancerDetectionAPI.Migrations
                         column: x => x.RoleId,
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_AspNetUserRoles_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -229,7 +244,7 @@ namespace SkinCancerDetectionAPI.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -239,6 +254,7 @@ namespace SkinCancerDetectionAPI.Migrations
                     BookingId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PatientId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
                     BookedDate = table.Column<string>(type: "nvarchar(100)", nullable: false)
                 },
                 constraints: table =>
@@ -249,7 +265,7 @@ namespace SkinCancerDetectionAPI.Migrations
                         column: x => x.PatientId,
                         principalTable: "Patients",
                         principalColumn: "PatientId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -259,6 +275,7 @@ namespace SkinCancerDetectionAPI.Migrations
                     LesionId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PatientId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
                     LesionLocation = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     DateOfDetection = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     DateOfExamination = table.Column<string>(type: "nvarchar(100)", nullable: false),
@@ -305,6 +322,7 @@ namespace SkinCancerDetectionAPI.Migrations
                     BiopsyId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     LesionId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
                     BiopsyDate = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     BiopsyResult = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     BiopsyResultDescription = table.Column<string>(type: "nvarchar(100)", nullable: false)
@@ -326,6 +344,7 @@ namespace SkinCancerDetectionAPI.Migrations
                     ImageId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     LesionId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
                     ImageType = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     ImageDescription = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     Resolution = table.Column<string>(type: "nvarchar(100)", nullable: false),
@@ -374,6 +393,7 @@ namespace SkinCancerDetectionAPI.Migrations
                     DiagnosisId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     BiopsyId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
                     DiagnosisDate = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     DiagnosisResult = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     DiagnosisDescription = table.Column<string>(type: "nvarchar(100)", nullable: false)
@@ -395,6 +415,7 @@ namespace SkinCancerDetectionAPI.Migrations
                     ModelPredictionId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ImageId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
                     PredictionResult = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     ConfidenceScore = table.Column<string>(type: "nvarchar(100)", nullable: false)
                 },
@@ -415,6 +436,7 @@ namespace SkinCancerDetectionAPI.Migrations
                     FinalDiagnosisId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DiagnosisId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
                     ModelPredictionId = table.Column<int>(type: "int", nullable: false),
                     FinalResult = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     FinalResultDescription = table.Column<string>(type: "nvarchar(100)", nullable: false)
@@ -441,6 +463,7 @@ namespace SkinCancerDetectionAPI.Migrations
                     TreatmentId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FinalDiagnosisId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
                     TreatmentDate = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     TreatmentType = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     TreatmentDescription = table.Column<string>(type: "nvarchar(100)", nullable: false),
@@ -464,6 +487,7 @@ namespace SkinCancerDetectionAPI.Migrations
                     FollowUpId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TreatmentId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
                     FollowUpDate = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     FollowUpResult = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     FollowUpDescription = table.Column<string>(type: "nvarchar(100)", nullable: false),
@@ -616,6 +640,9 @@ namespace SkinCancerDetectionAPI.Migrations
 
             migrationBuilder.DropTable(
                 name: "FollowUps");
+
+            migrationBuilder.DropTable(
+                name: "Logs");
 
             migrationBuilder.DropTable(
                 name: "WorkflowStages");

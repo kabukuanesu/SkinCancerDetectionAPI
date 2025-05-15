@@ -12,7 +12,7 @@ using SkinCancerDetectionAPI.Data;
 namespace SkinCancerDetectionAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250325073407_First Migration")]
+    [Migration("20250515132611_First Migration")]
     partial class FirstMigration
     {
         /// <inheritdoc />
@@ -280,6 +280,9 @@ namespace SkinCancerDetectionAPI.Migrations
                     b.Property<int>("LesionId")
                         .HasColumnType("int");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("BiopsyId");
 
                     b.HasIndex("LesionId");
@@ -300,6 +303,9 @@ namespace SkinCancerDetectionAPI.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("PatientId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("BookingId");
@@ -332,6 +338,9 @@ namespace SkinCancerDetectionAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("DiagnosisId");
 
                     b.HasIndex("BiopsyId");
@@ -359,6 +368,9 @@ namespace SkinCancerDetectionAPI.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("ModelPredictionId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("FinalDiagnosisId");
@@ -399,6 +411,9 @@ namespace SkinCancerDetectionAPI.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("TreatmentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("FollowUpId");
@@ -447,6 +462,9 @@ namespace SkinCancerDetectionAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("ImageId");
 
                     b.HasIndex("LesionId");
@@ -489,11 +507,38 @@ namespace SkinCancerDetectionAPI.Migrations
                     b.Property<int>("PatientId")
                         .HasColumnType("int");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("LesionId");
 
                     b.HasIndex("PatientId");
 
                     b.ToTable("Lesions");
+                });
+
+            modelBuilder.Entity("SkinCancerDetectionAPI.Models.Log", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StackTrace")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Timestamp")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Logs");
                 });
 
             modelBuilder.Entity("SkinCancerDetectionAPI.Models.ModelPrediction", b =>
@@ -514,6 +559,9 @@ namespace SkinCancerDetectionAPI.Migrations
                     b.Property<string>("PredictionResult")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("ModelPredictionId");
 
@@ -626,6 +674,9 @@ namespace SkinCancerDetectionAPI.Migrations
                     b.Property<string>("TreatmentType")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("TreatmentId");
 

@@ -69,8 +69,8 @@ namespace SkinCancerDetectionAPI.Services
                         UserId = admin.UserId,
                         Username = adminEmail,
                         Password = BCrypt.Net.BCrypt.HashPassword("Admin@123"),
-                        RecoveryQuestion = "What is your favorite color?",
-                        RecoveryAnswer = "Blue"
+                        RecoveryQuestion = "Who are we?",
+                        RecoveryAnswer = "Skin Cancer"
                     };
 
                     dbContext.Authentications.Add(auth);

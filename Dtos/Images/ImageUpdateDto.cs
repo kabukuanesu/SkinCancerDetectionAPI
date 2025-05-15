@@ -3,6 +3,7 @@ namespace SkinCancerDetectionAPI.Models
 {
     public class ImageUpdateDto
     {
+        public int UserId { get; set; }
         public string ImageType { get; set; } = string.Empty;
         public string ImageDescription { get; set; } = string.Empty;
         public string Resolution { get; set; } = string.Empty;

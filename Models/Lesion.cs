@@ -11,6 +11,8 @@ namespace SkinCancerDetectionAPI.Models
         public int PatientId { get; set; }
         public Patient Patient { get; set; } = null!;
 
+        public int UserId { get; set; }
+
         [Column(TypeName = "nvarchar(100)")]
         public string LesionLocation { get; set; } = "";
 
