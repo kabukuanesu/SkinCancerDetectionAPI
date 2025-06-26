@@ -66,6 +66,9 @@ builder.Services.AddAuthorization(options =>
 // Register the WorkflowService
 builder.Services.AddScoped<WorkflowService>();
 
+// Add this with your other service registrations
+builder.Services.AddScoped<IExportService, ExportService>();
+
 // Add Controllers
 builder.Services.AddControllers();
 
